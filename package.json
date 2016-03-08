@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku": "node infrastructure/heroku.js",
     "start": "node server.js",
     "test": "mocha test/**/*.test.js"
   },
