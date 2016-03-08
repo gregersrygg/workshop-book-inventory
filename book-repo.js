@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 
-const MONGO_URL = 'mongodb://localhost:27017/books';
+const MONGO_URL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/books';
 var collection = MongoClient.connect(MONGO_URL).then((db) => {
     return db.collection('books');
 });
