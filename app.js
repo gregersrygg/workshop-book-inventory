@@ -3,6 +3,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var stockRoutes = require('./stockRoutes.js');
+const ERR_MSGS = {
+    404: 'Page not found'
+};
 
 function myLogger(req, res, next) {
     console.log('Incomming request at', new Date());
@@ -21,8 +24,13 @@ module.exports = function (bookRepo) {
     });
 
     app.use(function(err, req, res, next) {
-        console.error(err.stack);
-        res.status(err.status || 500).send('Internal server error');
+        const STATUS_CODE = err.status || 500;
+        if (STATUS_CODE >= 500) {
+            console.error(err.message, err.stack);
+        } else {
+            console.log(err.message, err.stack);
+        }
+        res.status(STATUS_CODE).send(ERR_MSGS[STATUS_CODE] || 'Internal server error');
         res.json({message: err.message, error: (process.env.NODE_ENV == 'production' ? {}: err.stack)});
     });
 
