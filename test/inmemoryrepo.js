@@ -9,7 +9,7 @@ module.exports = {
         if (item) {
             item.count = count;
         } else {
-            books[isbn] = {isbn: isbn, count: count};
+            books[isbn] = { isbn, count };
         }
         return Promise.resolve();
     },

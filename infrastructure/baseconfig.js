@@ -1,11 +1,13 @@
+/*eslint camelcase: 0*/
+
 module.exports = {
     name: 'book-service-gregers',
     region: 'eu',
     maintenance: false,
     stack: 'cedar-14',
-    config_vars: {
-        //MONGOLAB_URI: 'mongodb://heroku_cw2wjftc:c672kmdbcmhbmeuni1mpn1jsso@ds019478.mlab.com:19478/heroku_cw2wjftc'
-    },
+    /*config_vars: {
+        MONGOLAB_URI: 'mongodb://heroku_cw2wjftc:c672kmdbcmhbmeuni1mpn1jsso@ds019478.mlab.com:19478/heroku_cw2wjftc'
+    },*/
     addons: {
         mongolab: {
             plan: 'mongolab:sandbox'
@@ -22,7 +24,7 @@ module.exports = {
         'http-session-affinity': {
             enabled: false
         },
-        preboot: {
+        'preboot': {
             enabled: false
         },
         'http-shard-header': {

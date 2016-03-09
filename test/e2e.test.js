@@ -6,7 +6,7 @@ var app = require('../app.js')(mockRepo);
 var describe = require('mocha').describe;
 var it = require('mocha').it;
 
-const TEST_OBJ = {"isbn": "1617291781", "count": 10};
+const TEST_OBJ = { isbn: "1617291781", count: 10 };
 
 describe('POST /stock', () => {
     it('respond with json', (done) => {
