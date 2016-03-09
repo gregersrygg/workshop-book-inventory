@@ -23,8 +23,15 @@ module.exports = function (bookRepo) {
     });
 
     router.get('/:isbn', (req, res) => {
-        bookRepo.getCount(req.params.isbn).then((count) => {
-            res.json(count);
+        console.log(`ISBN ${req.params.isbn}`);
+        bookRepo.getCount(req.params.isbn).then(count => {
+            console.log(`ISBN count ${count} ${typeof count}`);
+            res.format({
+                text: () => res.send(count),
+                html: () => res.send(`<b>${count}</b>`),
+                json: () => res.json(count),
+                default: () => res.status(406).send('Not Acceptable')
+            });
         }).catch(function (err) {
             console.err(err);
             res.status = 404;
